@@ -1,16 +1,18 @@
 <?php include "menu.php"; ?>
+<?php include "library_db.php"?>
+<br>
 <?php
-    
-	require 'library_db.php';
-	$selection=$_POST['book_id'];
-	$stmt = $db->prepare("SELECT book_name, author, isbn FROM books WHERE book_id = :id");
-	$stmt->bindParam(':id',$selection);
+//$sql='select * from books where book_name like '.$_POST['abook'].'%';
+$selection=$_POST['abook'].'%';
+	$stmt = $db->prepare("SELECT * FROM books WHERE books_name LIKE :a_name");
+	$stmt->bindParam(':a_name',$selection);
 	$stmt->execute();
 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	if (isset($_POST['myButton']))
+	
 	{
 		foreach ($result as $row) {
-			echo $row['book_name'].' '.$row['author'].' '.$row['isbn'].'<br/>';
+			echo $row['books_id'].' '.$row['books_name'].' '.$row['author'].'<br/>';
 		}
 	}
-	?>
+
+?>

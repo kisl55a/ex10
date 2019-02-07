@@ -1,14 +1,19 @@
 <?php include "menu.php"; ?>
 <?php
 	require 'library_db.php';
-	$stmt=$db->prepare("INSERT INTO books (book_id,book_name,author) VALUES(:book_id,:book_name,:author)");
-		$stmt->bindParam(':book_id', $book_id);
-		$stmt->bindParam(':book_name', $book_name);
-		$stmt->bindParam(':author', $author);
-	$book_id=$_POST['book_id'];
-	$book_name=$_POST['book_name'];
-    $author=$_POST['author'];
-    
-    $stmt->execute();
+	print_r($_POST); 
+
+	$stmt=$db->prepare("INSERT INTO books (books_id,books_name,author,isbn) 
+	VALUES(:idBook,:naBook,:auBook,:isBook)"); 
+	$stmt->bindParam(':idBook', $b_id); 
+	$stmt->bindParam(':naBook', $b_name); 
+	$stmt->bindParam(':auBook', $b_author); 
+	$stmt->bindParam(':isBook', $b_isbn); 
+	$b_id=$_POST['b_id']; 
+	$b_name=$_POST['b_name']; 
+	$b_author=$_POST['b_author']; 
+	$b_isbn=$_POST['b_isbn']; 
+	
+	$stmt->execute(); 
 
 	?>

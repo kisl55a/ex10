@@ -4,7 +4,7 @@
 <?php
 //$sql='select * from books where book_name like '.$_POST['abook'].'%';
 $selection=$_POST['abook'].'%';
-	$stmt = $db->prepare("SELECT * FROM books WHERE books_name LIKE :a_name");
+	$stmt = $db->prepare("SELECT * FROM books WHERE books_id LIKE :a_name");
 	$stmt->bindParam(':a_name',$selection);
 	$stmt->execute();
 	$result = $stmt->fetchAll(PDO::FETCH_ASSOC);
